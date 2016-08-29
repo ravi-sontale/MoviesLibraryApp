@@ -1,0 +1,115 @@
+﻿@model MoviesLibrary.Web.Models.MovieModel
+@{
+    ViewBag.Title = "Edit Movie";
+}
+
+<h2>Edit Movies</h2>
+@using (Html.BeginForm("EditMovie", "Movies", FormMethod.Post))
+{
+@Html.AntiForgeryToken()
+@Html.ValidationSummary()
+
+<fieldset>
+    <legend>Edit new movie to library</legend>
+    <ul>
+        <li>
+            @Html.LabelFor(m => m.Title)
+            @Html.TextBoxFor(m => m.Title, "Title")
+            @Html.ValidationMessageFor(m => m.Title)
+        </li>
+         <li>
+            @Html.LabelFor(m => m.Classification)
+            @Html.TextBoxFor(m => m.Classification, "Classification")
+            @Html.ValidationMessageFor(m => m.Classification)
+        </li>
+         <li>
+            @Html.LabelFor(m => m.Genre)
+            @Html.TextBoxFor(m => m.Genre, "Genre")
+            @Html.ValidationMessageFor(m => m.Genre)
+        </li>
+         <li>
+            @Html.LabelFor(m => m.Rating)
+            @Html.TextBoxFor(m => m.Rating, "Rating")
+            @Html.ValidationMessageFor(m => m.Rating)
+        </li>
+          <li>
+            @Html.LabelFor(m => m.ReleaseDate)
+            @Html.TextBoxFor(m => m.ReleaseDate, "ReleaseDate")
+            @Html.ValidationMessageFor(m => m.ReleaseDate)
+            @Html.HiddenFor(m => m.MovieId)
+        </li>
+       <li>  
+            <div id="TextBoxesGroup">
+            
+              @for (int i = 0; i < Model.Cast.Length; i++)
+              {
+                  int count = i+1;
+                  string divId = "TextBoxDiv" + count;
+                  <div id=@divId>
+                  @Html.LabelFor(m => m.Cast, "Cast #" + count)
+                  @Html.TextBoxFor(m => m.Cast[i],  new { id = "Cast" + count })
+                  </div>
+              }
+                
+              @Html.HiddenFor(m => m.Cast, new { id = "hdnCasts" })
+            </div>
+            <input type='button' value='Add Cast' id='addButton'/>
+            <input type='button' value='Remove Cast' id='removeButton' />
+         </li>
+    </ul>
+    <input type="submit" value = "Save" id ="Edit" />
+    <input type="button" value="Cancel" style="font-size: 1.2em;padding: 5px;" onclick ="javascript:document.location.href='@Url.Action("GetAllMovies", "Movies")'" />
+</fieldset>
+}
+
+
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+        var counter = @Model.Cast.Length + 1;
+
+        $("#addButton").click(function () {
+
+            if (counter > 5) {
+                alert("Only 5 casts allowed");
+                return false;
+            }
+
+            var newTextBoxDiv = $(document.createElement('div'))
+                 .attr("id", 'TextBoxDiv' + counter);
+
+            newTextBoxDiv.html('<label>Cast #' + counter + ' : </label>' +
+                  '<input type="text" name="Cast' + counter +
+                  '" id="Cast' + counter + '" value="" >');
+
+            newTextBoxDiv.appendTo("#TextBoxesGroup");
+
+
+            counter++;
+        });
+
+        $("#removeButton").click(function () {
+            if (counter == 1) {
+                alert("No more Cast to remove");
+                return false;
+            }
+
+            counter--;
+
+            $("#TextBoxDiv" + counter).remove();
+
+        });
+
+        $("#Edit").click(function () {
+
+            var casts = [];
+            for (i = 1; i < counter; i++) {
+                casts.push($('#Cast' + i).val());
+            }
+
+            $("#hdnCasts").val(casts);
+        });
+    });
+</script>

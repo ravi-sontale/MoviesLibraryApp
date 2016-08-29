@@ -1,0 +1,1 @@
+﻿<%@ ServiceHost Language="C#" Debug="true" Service="MoviesLibrary.Service.MoviesLibraryService" CodeBehind="MoviesLibraryService.svc.cs" Factory ="MoviesLibrary.Service.WcfServiceFactory" %>

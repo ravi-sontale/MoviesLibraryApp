@@ -1,0 +1,49 @@
+﻿@model IList<MoviesLibrary.Web.Models.MovieModel>
+@{
+    ViewBag.Title = "Movies List";
+    var grid = new WebGrid(source: Model, canPage: true, rowsPerPage: 10, defaultSort: "Title");
+}
+
+<h2>Movies</h2>
+<div>
+    @using (Html.BeginForm("SearchMovie", "Movies", FormMethod.Post, new { searchText = "SearchMovie" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary()
+        <fieldset>
+            <legend>Search</legend>
+            @Html.EditorFor(m => m.FirstOrDefault().SearchText)
+            <input type="submit" value = "Search Movie" id = "Search"  />
+            <div style = "float:right">
+                @Html.ActionLink("Add new Movie", "AddMovie", "Movies")
+            </div>
+        </fieldset>
+    }
+
+</div>
+
+<div>
+ <fieldset>
+            <legend>Movies Library</legend>
+    @grid.GetHtml(
+    columns:grid.Columns(
+        grid.Column("Title", "Title"),
+        grid.Column("Classification", "Classification"),
+        grid.Column("Genre", "Genre"),
+        grid.Column("Rating", "Rating"),
+        grid.Column("ReleaseDate", "ReleaseDate"),
+        grid.Column("Cast", "Cast", (item) =>
+            {
+                var temp = string.Empty;
+                foreach (var cast in item.Cast)
+                {
+                    temp += cast + "<br />";
+                }
+                return new HtmlString(temp);
+            }),
+            grid.Column("", header: "Actions", format:@<text>
+            @Html.ActionLink("Edit", "EditMovie", new { MovieId = item.MovieId, Title = item.Title, Classification = item.Classification, Genre = item.Genre, Rating = item.Rating, ReleaseDate = item.ReleaseDate, Cast = String.Join(",", item.Cast) })
+            </text>)
+        ))
+        </fieldset>
+</div>

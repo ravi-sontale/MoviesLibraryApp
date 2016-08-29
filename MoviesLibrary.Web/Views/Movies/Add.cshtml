@@ -1,0 +1,106 @@
+﻿@model MoviesLibrary.Web.Models.MovieModel
+@{
+    ViewBag.Title = "Add Movie";
+}
+
+<h2>Add Movies</h2>
+@using (Html.BeginForm("AddMovie", "Movies", FormMethod.Post, new { id = "MovieId" }))
+{
+@Html.AntiForgeryToken()
+@Html.ValidationSummary()
+
+<fieldset>
+    <legend>Add new movie to library</legend>
+    <ul style="list-style: none; ">
+        <li>
+            @Html.LabelFor(m => m.Title)
+            @Html.TextBoxFor(m => m.Title, "Title")
+            @Html.ValidationMessageFor(m => m.Title)
+        </li>
+         <li>
+            @Html.LabelFor(m => m.Classification)
+            @Html.TextBoxFor(m => m.Classification, "Classification")
+            @Html.ValidationMessageFor(m => m.Classification)
+        </li>
+         <li>
+            @Html.LabelFor(m => m.Genre)
+            @Html.TextBoxFor(m => m.Genre, "Genre")
+            @Html.ValidationMessageFor(m => m.Genre)
+        </li>
+         <li>
+            @Html.LabelFor(m => m.Rating)
+            @Html.TextBoxFor(m => m.Rating, "Rating")
+            @Html.ValidationMessageFor(m => m.Rating)
+        </li>
+          <li>
+            @Html.LabelFor(m => m.ReleaseDate)
+            @Html.TextBoxFor(m => m.ReleaseDate, "ReleaseDate")
+            @Html.ValidationMessageFor(m => m.ReleaseDate)
+        </li>
+       <li>  
+            <div id="TextBoxesGroup">
+                <div id="TextBoxDiv1">
+                    <label>Cast #1 : </label><input type="text" id="Cast1" />
+                </div>
+                
+                @Html.HiddenFor(m => m.Cast, new { id = "hdnCasts" })
+            </div>
+            <input type='button' value='Add Cast' id='addButton'/>
+            <input type='button' value='Remove Cast' id='removeButton' />
+         </li>
+    </ul>
+    <input type="submit" value = "Add" id ="add" />
+    <input type="button" value="Cancel" style="font-size: 1.2em;padding: 5px;" onclick ="javascript:document.location.href='@Url.Action("GetAllMovies", "Movies")'" />
+</fieldset>
+}
+
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+        var counter = 2;
+
+        $("#addButton").click(function () {
+
+            if (counter > 4) {
+                alert("Only 5 casts allowed");
+                return false;
+            }
+
+            var newTextBoxDiv = $(document.createElement('div'))
+                 .attr("id", 'TextBoxDiv' + counter);
+
+            newTextBoxDiv.html('<label>Cast #' + counter + ' : </label>' +
+                  '<input type="text" name="Cast' + counter +
+                  '" id="Cast' + counter + '" value="" >');
+
+            newTextBoxDiv.appendTo("#TextBoxesGroup");
+
+
+            counter++;
+        });
+
+        $("#removeButton").click(function () {
+            if (counter == 1) {
+                alert("No more Cast to remove");
+                return false;
+            }
+
+            counter--;
+
+            $("#TextBoxDiv" + counter).remove();
+
+        });
+
+        $("#add").click(function () {
+
+            var casts = [];
+            for (i = 1; i < counter; i++) {
+                casts.push($('#Cast' + i).val());
+            }
+
+            $("#hdnCasts").val(casts);
+        });
+    });
+</script>

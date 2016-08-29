@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoviesLibrary.Service", "MoviesLibraryService\MoviesLibrary.Service.csproj", "{89DA017A-3ECC-4756-A21E-0DDBBC325768}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoviesLibrary.Provider", "MoviesLibrary.Provider\MoviesLibrary.Provider.csproj", "{30DB66B8-6149-4001-8058-B921D05845E6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoviesLibrary.Interface", "MoviesLibrary.Interface\MoviesLibrary.Interface.csproj", "{7F0AE2B6-30B1-405F-B136-836F3EB52E12}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{41676618-D1C3-46DF-BE1B-3A72E860E265}"
+	ProjectSection(SolutionItems) = preProject
+		Local.testsettings = Local.testsettings
+		MoviesLibrary.vsmdi = MoviesLibrary.vsmdi
+		TraceAndTestImpact.testsettings = TraceAndTestImpact.testsettings
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoviesLibrary.Service.Unit.Tests", "MoviesLibrary.Service.Unit.Tests\MoviesLibrary.Service.Unit.Tests.csproj", "{BDCE3989-4D38-47A2-9B05-872BE6E37E3C}"
+EndProject
+Global
+	GlobalSection(TestCaseManagementSettings) = postSolution
+		CategoryFile = MoviesLibrary.vsmdi
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{89DA017A-3ECC-4756-A21E-0DDBBC325768}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{89DA017A-3ECC-4756-A21E-0DDBBC325768}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{89DA017A-3ECC-4756-A21E-0DDBBC325768}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{89DA017A-3ECC-4756-A21E-0DDBBC325768}.Release|Any CPU.Build.0 = Release|Any CPU
+		{30DB66B8-6149-4001-8058-B921D05845E6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{30DB66B8-6149-4001-8058-B921D05845E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{30DB66B8-6149-4001-8058-B921D05845E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{30DB66B8-6149-4001-8058-B921D05845E6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7F0AE2B6-30B1-405F-B136-836F3EB52E12}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7F0AE2B6-30B1-405F-B136-836F3EB52E12}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7F0AE2B6-30B1-405F-B136-836F3EB52E12}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7F0AE2B6-30B1-405F-B136-836F3EB52E12}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B8A73B29-6AE4-4AB9-8370-D6AD9C65DFD7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B8A73B29-6AE4-4AB9-8370-D6AD9C65DFD7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B8A73B29-6AE4-4AB9-8370-D6AD9C65DFD7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B8A73B29-6AE4-4AB9-8370-D6AD9C65DFD7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BDCE3989-4D38-47A2-9B05-872BE6E37E3C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BDCE3989-4D38-47A2-9B05-872BE6E37E3C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BDCE3989-4D38-47A2-9B05-872BE6E37E3C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BDCE3989-4D38-47A2-9B05-872BE6E37E3C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		EnterpriseLibraryConfigurationToolBinariesPath = packages\Unity.2.1.505.2\lib\NET35
+	EndGlobalSection
+EndGlobal
